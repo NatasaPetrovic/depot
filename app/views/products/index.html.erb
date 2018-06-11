@@ -1,0 +1,36 @@
+<div id="product_list" class="col m12">
+  <h1 class="flow-text">Listing products</h1>
+
+  <% @products.each do |product| %>
+    <div class="col m12 product_item">
+      <div class="col m4">
+        <%= image_tag(product.image_url, :class => 'responsive-img') %>
+      </div>
+
+      <div class="col m8">
+        <div class="col m12  flow-text">
+          <%= product.title %>
+        </div>
+        <div class="col m12">
+            <%= truncate(strip_tags(product.description), :length => 80) %>
+        </div>
+      </div>
+
+      <div >
+        <%= link_to 'Show', product %><br/>
+        <%= link_to 'Edit', edit_product_path(product) %>
+        <br/> <%= link_to 'Destroy', product,
+        :confirm => 'Are you sure?', :method => :delete %>
+      </div>
+    </div>
+    <div class="divider col m12"></div>
+  <% end %>
+</div>
+
+<!-- ADD NEW PRODUCT -->
+
+<div class="fixed-action-btn">
+  <%= link_to new_product_path, class: "btn-floating btn-large waves-effect waves-light red right" do %>
+    <i class="material-icons">add</i>
+  <% end %>
+</div>

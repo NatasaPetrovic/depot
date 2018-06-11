@@ -1,0 +1,44 @@
+<h1 class="flow-text">Listing orders</h1>
+
+<table class="responsive-table striped">
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Email</th>
+    <th>Pay type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= order.name %></td>
+    <td><%= order.address %></td>
+    <td><%= order.email %></td>
+    <td><%= order.pay_type %></td>
+    <td>
+      <%= link_to order do%>
+        <i class="material-icons">visibility</i>
+      <% end %>
+    </td>
+    <td>
+      <%= link_to edit_order_path(order) do%>
+        <i class="material-icons">create</i>
+      <% end %>
+    </td>
+    <td>
+      <%= link_to order, method: :delete, data: { confirm: 'Are you sure?' } do%>
+        <i class="material-icons">delete</i>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<div class="fixed-action-btn">
+  <%= link_to new_order_path, class: "btn-floating btn-large waves-effect waves-light red right" do %>
+    <i class="material-icons">add</i>
+  <% end %>
+</div>
+<p><%= will_paginate @orders %></p>

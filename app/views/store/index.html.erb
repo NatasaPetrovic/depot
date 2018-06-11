@@ -1,0 +1,34 @@
+<div class="col m12">
+  <% if notice %>
+    <p id="notice" class="flow-text"><%= notice %></p>
+  <% end %>
+</div>
+
+<div class="col m12 headline">
+  <h1 class="flow-text"><%= t('.title_html') %></h1>
+</div>
+
+<div class="col m12">
+  <% @products.each do |product| %>
+      <div class="col m6 item_wrap">
+        <div class="col m4">
+          <%= image_tag(product.image_url, class: "responsive-img")  %>
+        </div>
+        <div class="col m8">
+          <div class="col m12">
+            <h6><%= product.title %></h6>
+          </div>
+          <div class="col m12 text_light">
+            <%=sanitize product.description %>
+          </div>
+        </div>
+        <div class="col m12 action_line">
+          <div class="right">
+            <span class="price "><%= number_to_currency(product.price) %></span>
+            <%= button_to t('.add'), line_items_path(product_id: product), remote: true, class: 'btn btn-small waves-effect waves-light red' %>
+          </div>
+          <div class="divider col m12"></div>
+        </div>
+      </div>
+  <% end %>
+</div>

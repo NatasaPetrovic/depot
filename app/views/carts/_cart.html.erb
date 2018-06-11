@@ -1,0 +1,19 @@
+<% unless cart.line_items.empty? %>
+<div class="grey lighten-4 cart_wrap">
+  <div class="row">
+    <div class="cart_title flow-text"><%= t('.title') %></div>
+    <table class="responsive-table">
+      <%= render(cart.line_items) %>
+      <tr>
+        <td class="b">Total</td>
+        <td></td>
+        <td class="b"><%= number_to_currency(cart.total_price) %></td>
+      </tr>
+    </table>
+    <div class="action_bar right">
+      <%= link_to t('.empty'), cart, :method => :delete, :confirm => t('.you_sure'), class: "btn btn-flat grey lighten-3 waves-effect waves-dark" %>
+      <%= link_to t('.checkout'), new_order_url, :method=>:get ,class: "btn green waves-effect waves-light"%>
+    </div>
+  </div>
+</div>
+<% end %>

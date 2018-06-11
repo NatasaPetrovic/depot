@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pragmatic Books Online Store</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag "depot2" %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= csrf_meta_tag %>
+  </head>
+
+  <body id="store" >
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+    <!-- NAVIGATION BAR -->
+
+    <nav class="grey darken-2">
+      <div id="banner" class="nav-wrapper">
+        <a href="http://localhost:3000/" class="brand-logo center">
+            <span class="flow-text">
+              <i class="material-icons">library_books</i>
+              <%= @page_title || t('.title') %>
+            </span>
+        </a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger left show-on-large"><i class="material-icons large">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="http://localhost:3000/questions"><%= t('.questions') %></a><li>
+          <li><a href="http://localhost:3000/news"><%= t('.news') %></a><li>
+          <li><a href="http://localhost:3000/contact"><%= t('.contact') %></a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- SIDE MENU -->
+
+    <ul id="slide-out" class="sidenav">
+
+      <% if session[:user_id] %>
+      <li>
+        <div class="user-view">
+          <div class="background">
+            <img src="/user_bg.jpg" class="responsive-img">
+          </div>
+          <a href="#user"><img class="circle" src="/milos_boja.jpg"></a>
+          <a href="#name"><span class="white-text name"><%= session[:user][:name] if session[:user].present? %></span></a>
+          <a href="#email"><span class="white-text email">milos.andjelkovic@learnupon.com</span></a>
+
+        </div>
+      </li>
+      <% end %>
+      <li><a href="http://localhost:3000/"><i class="material-icons">store</i>Store</a></li>
+      <% if session[:user_id] %>
+      <li><%= link_to 'Orders', orders_path %></li>
+      <li><%= link_to 'Products', products_path %></li>
+      <li><%= link_to 'Users', users_path %></li>
+      <li><div class="divider"></div></li>
+      <li>
+        <%= link_to logout_path, :method => :delete  do%>
+          <i class="material-icons">subdirectory_arrow_right</i>Logout
+        <% end %>
+      </li>
+      <% end %>
+
+      <li class="local_selector">
+        <%= form_tag store_path, :class => 'locale' do %>
+          <%= select_tag 'set_locale',
+            options_for_select(LANGUAGES, I18n.locale.to_s),
+            :onchange => 'this.form.submit()',
+            :class => 'browser-default' %>
+          <%= javascript_tag "$$('.locale input').each(Element.hide)" %>
+        <% end %>
+      </li>
+    </ul>
+
+    <!-- PAGE CONTENT -->
+
+    <div id="main" class="container">
+      <div id="cart">
+        <%= render @cart if @cart.present? %>
+      </div>
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+
+  </body>
+</html>

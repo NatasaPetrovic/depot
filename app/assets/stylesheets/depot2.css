@@ -1,0 +1,90 @@
+/* ____________________________________________ SHARED */
+button:focus, input {
+  outline: none !important;
+}
+
+.headline {
+  margin: 30px 0 40px 0;
+}
+
+.b {
+  font-weight: bold;
+}
+
+.white_text input{
+  color: white !important;
+}
+
+.text_error {
+  color: red;
+}
+
+/* ____________________________________________ SIDE NAVIGATION */
+
+.local_selector {
+  position: absolute;
+  bottom: 70px;
+  width: 100%;
+  padding: 16px;
+}
+
+.sidenav li > a, .sidenav li > i {
+  color: rgba(60, 60, 60, 0.87) !important;
+}
+/* ____________________________________________ STORE */
+.item_wrap {
+  height: 230px;
+  position: relative;
+}
+
+.item_wrap img {
+  max-height: 164px;
+}
+
+.action_line > div form div i input {
+  color: white !important;
+  cursor: pointer;
+  display: inline;
+}
+
+.action_line > div form, .action_line > div form div {
+  display: inline;
+}
+.action_line {
+  position: absolute;
+  bottom: 0;
+}
+
+.action_line .divider {
+  margin-top: 24px;
+  margin-bottom: 36px;
+}
+
+.price {
+  font-weight: 300;
+  font-size: 16px;
+  margin-right: 30px;
+}
+
+.text_light {
+  font-size: 11px;
+  font-weight: 300;
+  color: #a7a7a7;
+}
+
+/* ____________________________________________ PRODUCT */
+.product_item {
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+/* ____________________________________________ CART */
+.cart_wrap {
+  margin-top: 50px;
+  padding: 34px 34px 1px 34px;
+  box-shadow: 1px 1px 2px #cacaca;
+}
+
+.action_bar {
+  margin-top: 18px;
+}
